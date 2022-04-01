@@ -12,7 +12,7 @@ jobs:
 
     steps:
 
-      - uses: DamianReeves/write-file-action
+      - uses: DamianReeves/write-file-action@master
         with:
           path: ${{ env.home}}/foo.txt
           contents: |
