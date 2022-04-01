@@ -6,34 +6,34 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-build:
-  runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-  steps:
-    - uses: actions/checkout@v2
+      # Elastic Beanstalk CLI version
+      - name: Get EB CLI version
+        run: |
+          python -m pip install --upgrade pip
+          pip install awsebcli --upgrade
+          eb --version
 
-    # Elastic Beanstalk CLI version
-    - name: Get EB CLI version
-      run: |
-        python -m pip install --upgrade pip
-        pip install awsebcli --upgrade
-        eb --version
+      # Configure AWS Credentials
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
 
-    # Configure AWS Credentials
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-        aws-region: us-east-1
+      # Create the Elastic Beanstalk application
+      - name: Create EBS application
+        run: |
+          eb init -p Docker running on 64bit Amazon Linux 2 --region us-east-1
 
-    # Create the Elastic Beanstalk application
-    - name: Create EBS application
-      run: |
-        eb init -p Docker running on 64bit Amazon Linux 2 --region us-east-1
-
-    # Deploy to (or Create) the Elastic Beanstalk environment
-    - name: Create test environment & deploy
-      run: |
-        (eb use Nextdockerpoc-env && eb status Nextdockerpoc-env && eb deploy) || eb create Nextdockerpoc-env
+      # Deploy to (or Create) the Elastic Beanstalk environment
+      - name: Create test environment & deploy
+        run: |
+          (eb use Nextdockerpoc-env && eb status Nextdockerpoc-env && eb deploy) || eb create Nextdockerpoc-env
