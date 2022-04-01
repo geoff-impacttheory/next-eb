@@ -13,11 +13,11 @@ jobs:
     steps:
 
       - uses: DamianReeves/write-file-action
-      with:
-        path: ${{ env.home}}/foo.txt
-        contents: |
-          echo "Hello World!"
-        write-mode: append
+        with:
+          path: ${{ env.home}}/foo.txt
+          contents: |
+            echo "Hello World!"
+          write-mode: append
 
 
 
