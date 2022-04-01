@@ -31,7 +31,7 @@ jobs:
       # Create the Elastic Beanstalk application
       - name: Create EBS application
         run: |
-          eb init -p Docker running on 64bit Amazon Linux 2 --region us-east-1
+          eb init -p docker --region us-east-1
 
       # Deploy to (or Create) the Elastic Beanstalk environment
       - name: Create test environment & deploy
