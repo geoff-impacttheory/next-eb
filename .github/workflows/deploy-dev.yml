@@ -24,7 +24,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: AKIAQT3SMFJNWNWRJLU3
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: us-east-1
 
@@ -35,5 +35,4 @@ jobs:
 
       # Deploy to (or Create) the Elastic Beanstalk environment
       - name: Create test environment & deploy
-        run: |
-          (eb use Nextdockerpoc-env && eb status Nextdockerpoc-env && eb deploy) || eb create Nextdockerpoc-env
+        run: eb deploy Nextdockerpoc-env
