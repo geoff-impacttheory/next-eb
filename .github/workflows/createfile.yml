@@ -27,8 +27,7 @@ jobs:
     # Create the Elastic Beanstalk application
     - name: Create EBS application
       run: |
-        eb printenv Nextdockerpoc-env-staging > hw.txt
-        ^x
+        eb printenv Nextdockerpoc-env-staging
 
     # - name: Create file
     #   run: |
