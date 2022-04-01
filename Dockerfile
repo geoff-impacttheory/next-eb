@@ -16,8 +16,8 @@ FROM node:16-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV NEXT_PUBLIC_API_URL=first var
-ENV MY_VAR=second var
+ENV NEXT_PUBLIC_API_URL firstvar
+ENV MY_VAR secondvar
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
