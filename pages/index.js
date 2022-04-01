@@ -17,7 +17,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Another one. NEXT_PUBLIC_MY_VAR = {process.env.NEXT_PUBLIC_MY_VAR || "Didn't get MY_VAR :("}
+          Another one. NODE_REMOTE = {process.env.NODE_REMOTE || "Didn't get NODE_REMOTE :("}
         </p>
 
         <p className={styles.description}>
