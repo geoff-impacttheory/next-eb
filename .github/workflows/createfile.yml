@@ -43,6 +43,7 @@ jobs:
         pwd
         ls -la
         cat other.txt
+        echo myvar ${var_one}
 
 
     - name: Create directory and create file in homedir
@@ -52,7 +53,6 @@ jobs:
         echo First        > ~/.zorg/home.txt
         echo Second Line >> ~/.zorg/home.txt
         echo Third       >> ~/.zorg/home.txt
-        echo ${var_one}
         ls -la ~/.zorg/
 
     - name: Show file content
