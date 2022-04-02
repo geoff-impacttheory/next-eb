@@ -29,7 +29,7 @@ jobs:
       run: |
         eb init -p docker --region us-east-1
         # eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
-        export var_one=eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}'
+        export var_one=$(eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}')
 
     - name: Create file
       run: |
@@ -62,4 +62,4 @@ jobs:
 
     - name: Add environment variables to Dockerfile
       run: |
-        bash scripts/replace_env.sh %var_one%
+        bash scripts/replace_env.sh ${var_one}
