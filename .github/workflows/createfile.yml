@@ -43,7 +43,7 @@ jobs:
         pwd
         ls -la
         cat other.txt
-        echo myvar ${var_one}
+        echo myvar
 
 
     - name: Create directory and create file in homedir
