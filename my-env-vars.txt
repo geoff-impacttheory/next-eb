@@ -1,0 +1,4 @@
+ Environment Variables:
+     MY_VAR = barfoo
+     NEXT_PUBLIC_API_URL = foobar
+     NODE_REMOTE = myremoteendpoint
