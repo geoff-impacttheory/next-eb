@@ -28,7 +28,8 @@ jobs:
     - name: Create EBS application
       run: |
         eb init -p docker --region us-east-1
-        eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
+        # eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
+        export var_one=eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}'
 
     - name: Create file
       run: |
@@ -41,8 +42,8 @@ jobs:
       run: |
         pwd
         ls -la
-        set /p var_one=<hw.txt
         cat other.txt
+        echo ${var_one}
 
 
     - name: Create directory and create file in homedir
