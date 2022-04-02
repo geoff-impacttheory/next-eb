@@ -41,7 +41,7 @@ jobs:
       run: |
         pwd
         ls -la
-        cat hw.txt
+        set api_endpoint=cat hw.txt
         cat other.txt
 
 
@@ -61,4 +61,4 @@ jobs:
 
     - name: Add environment variables to Dockerfile
       run: |
-        bash scripts/replace_env.sh cat hw.txt
+        bash scripts/replace_env.sh api_endpoint
