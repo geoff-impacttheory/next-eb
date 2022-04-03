@@ -9,41 +9,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
 
-      - uses: DamianReeves/write-file-action@master
-        with:
-          path: ${{ env.home}}/foo.txt
-          contents: |
-            echo "Hello World!"
-          write-mode: append
+    - uses: actions/checkout@v2
 
+    # Elastic Beanstalk CLI version
+    - name: Get EB CLI version
+      run: |
+        python -m pip install --upgrade pip
+        pip install awsebcli --upgrade
+        eb --version
 
+    # Configure AWS Credentials
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-region: us-east-1
 
-      # - uses: actions/checkout@v2
+    # Create the Elastic Beanstalk application
+    - name: Create EBS application
+      run: |
+        eb init -p docker --region us-east-1
+        # eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
+        export var_one=$(eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}')
+        echo ${var_one}
+        bash ./scripts/replace_env.sh ${var_one}
 
-      # # Elastic Beanstalk CLI version
-      # - name: Get EB CLI version
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install awsebcli --upgrade
-      #     eb --version
+    # Create the Elastic Beanstalk application
+    - name: Create EBS application
+      run: |
+        eb init -p docker --region us-east-1
 
-      # # Configure AWS Credentials
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-      #     aws-region: us-east-1
-
-      # # Create the Elastic Beanstalk application
-      # - name: Create EBS application
-      #   run: |
-      #     eb init -p docker --region us-east-1
-
-      # # Deploy to (or Create) the Elastic Beanstalk environment
-      # - name: Create test environment & deploy
-      #   run: |
-      #     (eb use Nextdockerpoc-env-staging && eb status Nextdockerpoc-env-staging && eb deploy) || eb create Nextdockerpoc-env-staging
+    # Deploy to (or Create) the Elastic Beanstalk environment
+    - name: Create test environment & deploy
+      run: |
+        (eb use Nextdockerpoc-env-staging && eb status Nextdockerpoc-env-staging && eb deploy) || eb create Nextdockerpoc-env-staging
