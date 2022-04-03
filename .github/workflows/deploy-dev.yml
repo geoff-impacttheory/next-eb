@@ -31,7 +31,7 @@ jobs:
     # Create the Elastic Beanstalk application
     - name: Create EBS application
       run: |
-        eb init -p docker --region us-east-1
+        # eb init -p docker --region us-east-1
         # eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
         export var_one=$(eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}')
         echo ${var_one}
