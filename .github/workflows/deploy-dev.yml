@@ -45,4 +45,5 @@ jobs:
     # Deploy to (or Create) the Elastic Beanstalk environment
     - name: Create test environment & deploy
       run: |
-        (eb use Nextdockerpoc-env-staging && eb status Nextdockerpoc-env-staging && eb deploy) || eb create Nextdockerpoc-env-staging
+        eb deploy Nextdockerpoc-env-staging
+#        (eb use Nextdockerpoc-env-staging && eb status Nextdockerpoc-env-staging && eb deploy) || eb create Nextdockerpoc-env-staging
