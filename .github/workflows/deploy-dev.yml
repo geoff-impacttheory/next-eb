@@ -37,11 +37,6 @@ jobs:
         echo ${var_one}
         bash ./scripts/replace_env.sh ${var_one}
 
-    # Create the Elastic Beanstalk application
-    - name: Create EBS application
-      run: |
-        eb init -p docker --region us-east-1
-
     # Deploy to (or Create) the Elastic Beanstalk environment
     - name: Create test environment & deploy
       run: |
