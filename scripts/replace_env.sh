@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assign the filename
-filename="Dockerfile"
+filename="../Dockerfile"
 
 # Take the search string
 # read -p "Enter the search string: " search
