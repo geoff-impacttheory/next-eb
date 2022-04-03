@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assign the filename
-filename="../Dockerfile"
+filename="Dockerfile"
 
 # Take the search string
 # read -p "Enter the search string: " search
@@ -18,9 +18,9 @@ OTHER_VAR_ESCAPED="${OTHER_VAR////\\/}"
 # echo $escaped
 
 if [[ $API_ENDPOINT_ESCAPED != "" ]]; then
-sed -i '' "s/api_endpoint/$API_ENDPOINT_ESCAPED/" $filename
+sed -i '' "s/api_endpoint/$API_ENDPOINT_ESCAPED/" "Dockerfile"
 fi
 
 if [[ $OTHER_VAR_ESCAPED != "" ]]; then
-sed -i '' "s/secondvar/$OTHER_VAR_ESCAPED/" $filename
+sed -i '' "s/secondvar/$OTHER_VAR_ESCAPED/" "Dockerfile"
 fi
