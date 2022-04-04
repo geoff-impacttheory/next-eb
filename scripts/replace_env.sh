@@ -19,6 +19,7 @@ OTHER_VAR_ESCAPED="${OTHER_VAR////\\/}"
 
 if [[ $API_ENDPOINT_ESCAPED != "" ]]; then
 sed -i "s/api_endpoint/$API_ENDPOINT_ESCAPED/" "Dockerfile"
+echo "$(<Dockerfile )"
 fi
 
 if [[ $OTHER_VAR_ESCAPED != "" ]]; then
