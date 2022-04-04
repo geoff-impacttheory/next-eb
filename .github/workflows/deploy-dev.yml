@@ -35,7 +35,7 @@ jobs:
         # eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
         export var_one=$(eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}')
         echo ${var_one}
-        # bash ./scripts/replace_env.sh ${var_one}
+        bash ./scripts/replace_env.sh ${var_one}
         # eb use Nextdockerpoc-env-staging
         eb deploy Nextdockerpoc-env-staging
 
