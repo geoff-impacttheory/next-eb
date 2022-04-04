@@ -9,7 +9,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NEXT_PUBLIC_API_URL foobar
+ENV NEXT_PUBLIC_API_URL api_endpoint
 
 RUN yarn build
 
