@@ -9,8 +9,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NEXT_PUBLIC_API_URL firstvar
-ENV MY_VAR secondvar
+ENV NEXT_PUBLIC_API_URL api_endpoint
 
 RUN yarn build
 
