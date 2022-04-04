@@ -10,7 +10,6 @@
     COPY . .
 
     ENV NEXT_PUBLIC_API_URL=api_endpoint
-    ENV NEXT_PUBLIC_MY_VAR=secondvar
 
     RUN yarn build
 
