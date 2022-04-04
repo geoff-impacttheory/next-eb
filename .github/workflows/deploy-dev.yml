@@ -43,6 +43,8 @@ jobs:
     - name: Create test environment & deploy
       run: |
         # eb use Nextdockerpoc-env-staging
+        git config user.email "geoff@impacttheory.com"
+        git config user.name "geoff@impacttheory.com"
         git add Dockerfile
         git commit -m "Automated: Update Dockerfile environment variables"
         git push
