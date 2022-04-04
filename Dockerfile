@@ -4,13 +4,13 @@
     COPY package.json yarn.lock ./
     RUN yarn install --frozen-lockfile
 
+    ENV NEXT_PUBLIC_API_URL api_endpoint
+    ENV NEXT_PUBLIC_MY_VAR secondvar
+
     FROM node:16-alpine AS builder
     WORKDIR /app
     COPY --from=deps /app/node_modules ./node_modules
     COPY . .
-
-    ENV NEXT_PUBLIC_API_URL=api_endpoint
-    ENV NEXT_PUBLIC_MY_VAR=secondvar
 
     RUN yarn build
 
