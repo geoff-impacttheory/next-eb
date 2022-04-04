@@ -43,5 +43,8 @@ jobs:
     - name: Create test environment & deploy
       run: |
         # eb use Nextdockerpoc-env-staging
+        git add Dockerfile
+        git commit -m "Automated: Update Dockerfile environment variables"
+        git push
         eb deploy Nextdockerpoc-env-staging
         # (eb use Nextdockerpoc-env-staging && eb status Nextdockerpoc-env-staging && eb deploy) || eb create Nextdockerpoc-env-staging
