@@ -34,7 +34,7 @@ jobs:
         eb init -p docker --region us-east-1
         # eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}' > hw.txt
         export var_one=$(eb printenv Nextdockerpoc-env-staging | grep NEXT_PUBLIC_API_URL | awk '{print $3}')
-        echo ${var_one}
+        echo "::set-env name=var_one::$var_one"
         bash ./scripts/replace_env.sh api_endpoint ${var_one}
 
         # eb use Nextdockerpoc-env-staging
@@ -51,3 +51,10 @@ jobs:
         git push
 
         # (eb use Nextdockerpoc-env-staging && eb status Nextdockerpoc-env-staging && eb deploy) || eb create Nextdockerpoc-env-staging
+
+    - name: Archive Test Results
+      if: always()
+      
+      run: |
+        echo "here comes the var..."
+        echo $var_one
